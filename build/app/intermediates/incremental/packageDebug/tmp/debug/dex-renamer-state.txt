@@ -1,0 +1,4 @@
+#Tue Mar 31 16:25:18 PDT 2020
+base.0=/home/phillz/Documents/flutter_projects/letters_2020_0/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
