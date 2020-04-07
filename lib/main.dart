@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'components/TextForms.dart';
+import 'Widgets/InputBoxWidget.dart';
+
 void main() => runApp(LettersLogInPage());
 
 class LettersLogInPage extends StatelessWidget {
@@ -26,6 +27,7 @@ class LettersLogInPage extends StatelessWidget {
 
             body: ListView(
               children: <Widget>[
+                
                 Container(
                   padding: EdgeInsets.all(maxHeight / 30),
                   
@@ -35,16 +37,14 @@ class LettersLogInPage extends StatelessWidget {
                       height: maxHeight / 5,
                     ),
                   ),
-
-                  TextForm(),
+                InputBoxWidget(labelText: "Username", padding: 10 ),
+                InputBoxWidget(labelText: "Password", padding: 10 ),
 
               ],
             ),
-
           ),
         );
       }
     );
-
   }
 }
