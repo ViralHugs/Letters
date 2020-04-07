@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'Widgets/InputBoxWidget.dart';
+import 'Models/LoginFormModel.dart';
 
 void main() => runApp(LettersLogInPage());
 
@@ -37,7 +40,13 @@ class LettersLogInPage extends StatelessWidget {
                       height: maxHeight / 5,
                     ),
                   ),
-                InputBoxWidget(labelText: "Username", padding: 10 ),
+                  ChangeNotifierProvider(
+                    create: (context) => LoginForm(),
+                    child: InputBoxWidget(
+                      labelText: "Username",
+                      padding: 10 
+                    ),
+                  ),
                 InputBoxWidget(labelText: "Password", padding: 10 ),
 
               ],

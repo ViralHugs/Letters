@@ -16,7 +16,6 @@ class InputBoxWidget extends StatefulWidget{
 
 class _InputBoxWidgetState extends State<InputBoxWidget> {
   
-  final _formKey = GlobalKey<FormState>();
   String labelText = '';
   double padding = 0.0;
   _InputBoxWidgetState(this.labelText, this.padding);
@@ -25,7 +24,6 @@ class _InputBoxWidgetState extends State<InputBoxWidget> {
   Widget build(BuildContext context) {
 
     return Form(
-      key: _formKey,
       child: Column(
         children: <Widget>[
           Container(

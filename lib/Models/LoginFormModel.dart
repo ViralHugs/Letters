@@ -14,8 +14,6 @@ class LoginForm with ChangeNotifier {
 
   set setUsername(String username) => _username = username; 
   set setPassword(String password) => _password = password;
-
-
-
+  
 }
 
