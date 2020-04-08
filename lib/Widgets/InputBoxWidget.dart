@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../Models/DataTransferModel.dart';
 
 class InputBoxWidget extends StatefulWidget{
 
@@ -22,20 +25,30 @@ class _InputBoxWidgetState extends State<InputBoxWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final dataTransferModel = Provider.of<DataTransferModel>(context, listen: false);
 
     return Form(
       child: Column(
         children: <Widget>[
           Container(
+            
             padding: EdgeInsets.all(this.padding),
+            
             child: TextFormField(
+
+              onChanged: (text){
+                dataTransferModel.store(labelText.toLowerCase(), text);
+              },
+
               decoration: InputDecoration(
                 labelText: labelText,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(25.0),
                 ),
               ),
+
             ),
+          
           )
         ],
       ),
