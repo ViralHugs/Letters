@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "815626031397",
+    "firebase_url": "https://letters-89b43.firebaseio.com",
+    "project_id": "letters-89b43",
+    "storage_bucket": "letters-89b43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815626031397:android:27fa06194dd6a74350cacc",
+        "android_client_info": {
+          "package_name": "com.viralhugs.letters_2020_0"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "815626031397-fn7h1cbjpvochoc8aruoqs062un8hp30.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfeD3cipprq_bddBCCGZ35TEYKUOgnRjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "815626031397-fn7h1cbjpvochoc8aruoqs062un8hp30.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
