@@ -1,10 +1,37 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LettersLogInPage extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
   
+  Container _createLoginInputField({TextEditingController controller, String labelText}){
+    return Container(
+      padding: EdgeInsets.all(23),
+      child: TextFormField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: labelText,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(25.0),
+          ),
+        ),
+        validator: (String text){
+          if(text.isEmpty){
+            return("Please enter some text");
+          }
+          return null;
+        },
+      ),
+    );
+  }
+
+  // TODO: finish this function
+  void _registerUser(FirebaseAuth _auth, String username, String password) async { 
+
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -31,6 +58,9 @@ class LettersLogInPage extends StatelessWidget {
             ),
 
             Form(
+              
+              key: _formKey,
+
               child: Column(
                 children: <Widget>[
                   _createLoginInputField(
@@ -48,7 +78,11 @@ class LettersLogInPage extends StatelessWidget {
                       // TODO: MAKE HTTP REQUEST HERE GIVEN THE VALUES
                       onPressed: (){
                        if(_formKey.currentState.validate()){
-                         _registerUser(_auth, _usernameController.text, _passwordController.text);
+                          showDialog(context: context, 
+                            barrierDismissible: false,
+                            builder: (_) => PopInOverlay(),
+                          );
+                          _registerUser(_auth, _usernameController.text, _passwordController.text);
                        }
                       },
                       child: Center(
@@ -71,42 +105,61 @@ class LettersLogInPage extends StatelessWidget {
   }
 }
 
-// TODO: finish this function
-void _registerUser(FirebaseAuth _auth, String username, String password) async { 
-  final FirebaseUser user = (await _auth.createUserWithEmailAndPassword(
-      email: username,
-      password: password,
-    ))
-        .user;
-  //   if (user != null) {
-  //     setState(() {
-  //       _success = true;
-  //       _userEmail = user.email;
-  //     });
-  //   } else {
-  //     _success = false;
-  //   }
-  // }
-
+class PopInOverlay extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return _PopInOverlayState();
+  }
+  
 }
 
-Container _createLoginInputField({TextEditingController controller, String labelText}){
-  return Container(
-    padding: EdgeInsets.all(23),
-    child: TextFormField(
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: labelText,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(25.0),
-        ),
-      ),
-      validator: (String text){
-        if(text.isEmpty){
-          return("Please enter some text");
-        }
-        return null;
-      },
-    ),
-  );
+class _PopInOverlayState extends State<PopInOverlay> with SingleTickerProviderStateMixin{
+  AnimationController controller;
+  Animation<double> scaleAnimation;
+  
+  @override void initState() {
+    super.initState();
+    controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 600));
+    scaleAnimation =
+        CurvedAnimation(parent: controller, curve: Curves.elasticInOut);
+
+    controller.addListener(() {
+      setState(() {});
+    });
+
+    controller.forward();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+
+        final double maxHeight = constraints.maxHeight;
+        return Center(
+          child:  Container ( 
+            child: ScaleTransition( 
+              scale: scaleAnimation,
+              child: 
+              Container( 
+                color: Colors.pink[100].withOpacity(.75),
+                width: maxHeight / 3,
+                height: maxHeight / 3,
+                child: SpinKitFadingCircle(
+                  itemBuilder: (BuildContext context, int index) {
+                    return DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: index.isEven ? Colors.red : Colors.green,
+                      ),
+                    );
+                  },
+                ),
+              )
+            )
+          )    
+        );
+      }
+    );
+  }
 }
