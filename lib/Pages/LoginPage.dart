@@ -29,7 +29,7 @@ class LettersLogInPage extends StatelessWidget {
 
   // TODO: finish this function
   void _registerUser(FirebaseAuth _auth, String username, String password) async { 
-
+    print("nothing");
   }
 
   @override
